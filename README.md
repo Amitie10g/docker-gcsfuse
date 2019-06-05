@@ -31,6 +31,7 @@ CONTAINER_IMAGE="amitie10g/gcsfuse"
 TZ="UTC"
 PUID=<User ID>
 PGID=<Group ID>
+BUCKET=<GCS bucket>
 
 docker run -t -i -d \
   --name="$CONTAINER_NAME" \
