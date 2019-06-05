@@ -1,7 +1,11 @@
 #!/usr/bin/with-contenv bash
 
 if [ -f "/etc/gcs-key.json" ]; then
-  chown abc:abc /etc/gcs-key.json
+
+  mkdir -p /mnt/gcs
+  chown abc:abc \
+    /etc/gcs-key.json
+    /mnt/gcs
   
   echo "$BUCKET /gcs gcsfuse rw,user,noauto,key_file=/etc/gcs-key.json" >> /etc/fstab
   s6-setuidgid abc mount.gcsfuse "$BUCKET" "/gcs" || exit 1
