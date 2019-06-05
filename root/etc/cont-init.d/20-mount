@@ -3,10 +3,10 @@
 if [ -f "/etc/gcs-key.json" ]; then
 
   mkdir -p /mnt/gcs
-  chown abc:abc \
+  chown -R abc:abc \
     /etc/gcs-key.json
     /mnt/gcs
-  
+
   echo "$BUCKET /mnt/gcs gcsfuse rw,user,noauto,key_file=/etc/gcs-key.json" >> /etc/fstab
   s6-setuidgid abc mount.gcsfuse "$BUCKET" "/mnt/gcs" || exit 1
 else
