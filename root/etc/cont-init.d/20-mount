@@ -7,8 +7,8 @@ if [ -f "/etc/gcs-key.json" ]; then
     /etc/gcs-key.json
     /mnt/gcs
   
-  echo "$BUCKET /gcs gcsfuse rw,user,noauto,key_file=/etc/gcs-key.json" >> /etc/fstab
-  s6-setuidgid abc mount.gcsfuse "$BUCKET" "/gcs" || exit 1
+  echo "$BUCKET /mnt/gcs gcsfuse rw,user,noauto,key_file=/etc/gcs-key.json" >> /etc/fstab
+  s6-setuidgid abc mount.gcsfuse "$BUCKET" "/mnt/gcs" || exit 1
 else
   echo "Fatal: No Service Account key found. Please follow the instructions to get your key and pass it to the container."
   exit 1
