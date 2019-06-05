@@ -12,4 +12,4 @@ COPY --from=builder /tmp/bin/gcsfuse /usr/bin
 COPY --from=builder /tmp/sbin/mount.gcsfuse /usr/sbin
 RUN ln -s /usr/sbin/mount.gcsfuse /usr/sbin/mount.fuse.gcsfuse
 
-copy /root/ /
+COPY /root/ /
