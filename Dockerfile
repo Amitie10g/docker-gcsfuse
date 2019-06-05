@@ -5,7 +5,7 @@ RUN go get -d github.com/googlecloudplatform/gcsfuse
 RUN go install github.com/googlecloudplatform/gcsfuse/tools/build_gcsfuse
 RUN build_gcsfuse ${GOPATH}/src/github.com/googlecloudplatform/gcsfuse /tmp ${GCSFUSE_VERSION}
 
-FROM alpine:latest
+FROM lsiobase/alpine:3.9
 RUN apk add --no-cache fuse ca-certificates
 
 COPY --from=builder /tmp/bin/gcsfuse /usr/bin
