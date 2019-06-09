@@ -21,17 +21,17 @@ ENV HOME="/config" \
 XDG_CONFIG_HOME="/config" \
 XDG_DATA_HOME="/config"
 
-RUN echo "***** installing required packages ****"
-apt-get update -y && \
- apt-get install -y \
-	fuse \
-  ca-certificates && \
-  echo "**** cleanup ****" && \
- apt-get clean -y && \
- rm -rf \
-	/tmp/* \
-	/var/lib/apt/lists/* \
-	/var/tmp/*
+RUN echo "***** installing required packages ****" && \
+    apt-get update -y && \
+    apt-get install -y \
+      fuse \
+      ca-certificates && \
+    echo "**** cleanup ****" && \
+    apt-get clean -y && \
+    rm -rf \
+      /tmp/* \
+      /var/lib/apt/lists/* \
+     /var/tmp/*
 
 COPY /root/ /
 COPY --from=builder /tmp/bin/gcsfuse /usr/bin
