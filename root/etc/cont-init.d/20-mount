@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+if [ -f "/config/gcs-key.json" ]; then
+  mkdir -p /mnt/gcs
+  chown abc:abc /config/gcs-key.json
+  chown abc:abc /mnt/gcs
+
+  echo "mounting $BUCKET..."
+  s6-setuidgid abc gcsfuse \
+    --uid $PUID \
+    --gid $PGID \
+    --key-file=/config/gcs-key.json \
+    $BUCKET \
+    /mnt/gcs || exit 1
+else
+  echo "Fatal: No Service Account key found. Please follow the instructions to get your key and pass it to the container."
+  exit 1
+fi
